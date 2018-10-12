@@ -1,0 +1,83 @@
+html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.tooltip {
+  position: absolute;    
+  pointer-events: inherit;
+  transition: opacity 100ms;
+}
+
+.tooltip>div {
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: 1px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.75);
+  transform: translate3d(-50%, -125%, 0);
+}
+
+.esri-widget {
+    background-color: #242424;
+    color: #ffffff;
+    font-family: "Aldrich";
+    font-size: 12px;
+}
+
+.esri-widget-pane {
+    background-color: #242424;
+    color: #ffffff;
+    font-family: "Aldrich";
+    font-size: 14px;
+    padding: 6px;
+    line-height: 1.8;
+    vertical-align: bottom;
+}
+
+.esri-widget__heading {
+    color: #ffffff;
+}
+
+.esri-legend__service {
+    padding-right: 12px;
+    padding-left: 12px;
+    color: #ffffff;
+}
+
+.esri-widget--button {
+    background-color: #242424;
+    color: #69dcff;
+}
+
+.esri-widget--button:hover {
+    background-color: #69dcff;
+    color: #242424;
+}
+
+.esri-widget--button:active {
+    background-color: #69dcff;
+    color: #242424;
+}
+
+.esri-popup__button {
+    color: #69dcff;
+}
+
+.esri-view-width-xlarge .esri-popup__main-container {
+    width: 325px;
+}
+
+.esri-layer-list__item {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+.esri-icon-visible:before {
+    color: rgb(105, 220, 255, 1);
+}
+
+.esri-icon-non-visible:before {
+    color: rgb(105, 220, 255, .5);
+}
