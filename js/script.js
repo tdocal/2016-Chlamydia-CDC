@@ -1,8 +1,4 @@
 var view = view;
-/*document.getElementById("buttontest").addEventListener("click",
-    function(e) {
-        alert(e.target.textContent)
-    })*/
 
 require([
     "esri/Map",
@@ -110,20 +106,12 @@ require([
                 type: "polygon-3d",
                 symbolLayers: [{
                     type: "extrude"
-                    /*edges: {
-                        type: "solid",
-                        size: 1.5,
-                        //color: "#69dcff"
-                        color: "grey"
-                    }*/
                 }]
             },
             visualVariables: [{
                 type: "color",
                 field: "Rate_per_1",
-                //field: "RATE_PER_100K",
                 legendOptions: {
-                    //title: "Reported cases of chlamydia per 100,000 in 2016"
                     title: "% of population with chlamydia"
                 },
                 stops: [{
@@ -138,7 +126,6 @@ require([
             }, {
                 type: "size",
                 field: "Cases",
-                //field: "CASES_",
                 legendOptions: {
                     title: "Total # of reported cases"
                 },
@@ -154,16 +141,66 @@ require([
             }]
         };
     
+    /*var countyDescr = function() {
+        if (STATE_NAME === "Louisiana") {
+            countyDescr = "Parrish";
+        } if (STATE_NAME === "Alaska") {
+            countyDescr = "Burrough";
+        } else {
+            countyDescr = "County";
+        }
+    };*/
+    
+    /*var countyDescr = "county";
+    if ({STATE_NAME} === "Alaska"){
+        countyDescr = "Burrough";
+    } if ({STATE_NAME} === "Louisiana") {
+        countyDescr = "Parrish";
+    }*/
+    
+    var radios = document.getElementsByTagName("INPUT");
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].addEventListener("change", function(e) {
+            var censusLayer = e.target.value;
+            if (censusLayer === "southAtl") {
+                map.removeAll();                
+                map.add(countyLayer);
+            } if (censusLayer === "eastSouth") {
+                map.removeAll();
+                map.add(countyLayer_esouth);
+            } if (censusLayer === "westSouth") {
+                map.removeAll();
+                map.add(countyLayer_wsouth);
+            } if (censusLayer === "mountain") {
+                map.removeAll();
+                map.add(countyLayer_mountain);
+            } if (censusLayer === "pacific") {
+                map.removeAll();
+                map.add(countyLayer_pacific);
+            } if (censusLayer === "eastNorth") {
+                map.removeAll();
+                map.add(countyLayer_enorth);
+            } if (censusLayer === "westNorth") {
+                map.removeAll();
+                map.add(countyLayer_wnorth);
+            } if (censusLayer === "newEng") {
+                map.removeAll();
+                map.add(countyLayer_neweng);
+            } if (censusLayer === "midAtl") {
+                map.removeAll();
+                map.add(countyLayer_midatl);
+            }
+        });
+    }
+    
     var countyLayer = new FeatureLayer({
         url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
         definitionExpression: "Cases > 0 AND STATE_NAME = 'Delaware' OR STATE_NAME = 'District of Columbia' OR STATE_NAME = 'Florida' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Maryland' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'Virginia' OR STATE_NAME = 'West Virginia'",
         title: "South Atlantic Census Division",
         renderer: sceneRenderer,
-        //visible: true,
         popupTemplate: {
             title: "{COUNTY_NAM}",
-            //content: "{Rate_per_1} reported cases of chlamydia per 100,000 <br>{Cases} cases out of a population of {POP2009}<br>{Chlam_Perc}% of the population has chlamydia",
-            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} county",
             fieldInfos: [{
                 fieldName: "Cases",
                 format: {
@@ -187,11 +224,8 @@ require([
         definitionExpression: "Cases > 0 AND STATE_NAME = 'Alabama' OR STATE_NAME = 'Kentucky' OR STATE_NAME = 'Mississippi' OR STATE_NAME = 'Tennessee'",
         title: "East South Central Census Divison",
         renderer: sceneRenderer,
-        //visible: false,
-        legendEnabled: false,
         popupTemplate: {
             title: "{COUNTY_NAM}",
-            //content: "{Rate_per_1} reported cases of chlamydia per 100,000 <br>{Cases} cases out of a population of {POP2009}<br>{Chlam_Perc}% of the population has chlamydia",
             content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
             fieldInfos: [{
                 fieldName: "Cases",
@@ -209,28 +243,22 @@ require([
         }
     });
     
-    map.add(countyLayer_esouth);
-    
-     /*var stateLayer = new FeatureLayer({
-        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_Chlamydia_States_2016/FeatureServer/0",
-        //definitionExpression: "CASES_ > 0",
-        
-         //definitionExpression: "RATE_PER_100K > 0 AND STATE_NAME = 'Alabama' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Florida' OR STATE_NAME = 'District of Columbia' OR STATE_NAME = 'Virginia' OR STATE_NAME = 'Maryland' OR STATE_NAME = 'California' OR STATE_NAME = 'Texas' OR STATE_NAME = 'New Mexico' OR STATE_NAME = 'Oklahoma' OR STATE_NAME = 'Kansas' OR STATE_NAME = 'Nebraska' OR STATE_NAME = 'West Virginia' OR STATE_NAME = 'New Hampshire' OR STATE_NAME = 'Vermont' OR STATE_NAME = 'Mississippi' OR STATE_NAME = 'Louisiana' OR STATE_NAME = 'Arkansas' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'Tennessee' OR STATE_NAME = 'Kentucky' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'Ohio' OR STATE_NAME = 'Indiana' OR STATE_NAME = 'Pennsylvania' OR STATE_NAME = 'Maine' OR STATE_NAME = 'Massachusetts' OR STATE_NAME = 'Wisconsin' OR STATE_NAME = 'Colorado' OR STATE_NAME = 'Rhode Island' OR STATE_NAME = 'Conneticut'' OR STATE_NAME = 'Delaware'",
-        
-        definitionExpression: "CASES_ > 0 AND STATE_NAME = 'Alabama' OR STATE_NAME = 'Florida' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Mississippi' OR STATE_NAME = 'Louisiana' OR STATE_NAME = 'Texas' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'Tennessee' OR STATE_NAME = 'Kentucky' OR STATE_NAME = 'Arkansas' OR STATE_NAME = 'Virginia'",
-        title: "Reported Chlamydia Cases per 100,000 2016",
+    var countyLayer_wsouth = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'Arkansas' OR STATE_NAME = 'Louisiana' OR STATE_NAME = 'Oklahoma' OR STATE_NAME = 'Texas'",
+        title: "West South Central Census Divison",
         renderer: sceneRenderer,
         popupTemplate: {
-            title: "{STATE_NAME}",
-            content: "{Chlam_Perc}% of the population has chlamydia<br>{CASES_} cases reported in {STATE_NAME}",
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
             fieldInfos: [{
-                fieldName: "CASES_",
+                fieldName: "Cases",
                 format: {
                     digitSeparator: true,
                     places: 0
                 }
             }, {
-                fieldName: "POP2010",
+                fieldName: "POP2009",
                 format: {
                     digitSeparator: true,
                     places: 0
@@ -238,8 +266,150 @@ require([
             }]
         }
     });
-        
-    map.add(stateLayer);*/
+    
+    var countyLayer_mountain = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'Arizona' OR STATE_NAME = 'Colorado' OR STATE_NAME = 'Idaho' OR STATE_NAME = 'Montana' OR STATE_NAME = 'Nevada' OR STATE_NAME = 'New Mexico' OR STATE_NAME = 'Utah' OR STATE_NAME = 'Wyoming'",
+        title: "Mountain Census Divison",
+        renderer: sceneRenderer,
+        popupTemplate: {
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            fieldInfos: [{
+                fieldName: "Cases",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }, {
+                fieldName: "POP2009",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }]
+        }
+    });
+    
+    var countyLayer_pacific = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'Alaska' OR STATE_NAME = 'California' OR STATE_NAME = 'Hawaii' OR STATE_NAME = 'Oregon' OR STATE_NAME = 'Washington'",
+        title: "Pacific Census Divison",
+        renderer: sceneRenderer,
+        popupTemplate: {
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            fieldInfos: [{
+                fieldName: "Cases",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }, {
+                fieldName: "POP2009",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }]
+        }
+    });
+    
+    var countyLayer_enorth = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'Illinois' OR STATE_NAME = 'Indiana' OR STATE_NAME = 'Michigan' OR STATE_NAME = 'Ohio' OR STATE_NAME = 'Wisconsin'",
+        title: "East North Central Census Divison",
+        renderer: sceneRenderer,
+        popupTemplate: {
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            fieldInfos: [{
+                fieldName: "Cases",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }, {
+                fieldName: "POP2009",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }]
+        }
+    });
+    
+    var countyLayer_wnorth = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'Iowa' OR STATE_NAME = 'Kansas' OR STATE_NAME = 'Minnesota' OR STATE_NAME = 'Missouri' OR STATE_NAME = 'Nebraska' OR STATE_NAME = 'North Dakota' OR STATE_NAME = 'South Dakota'",
+        title: "West North Central Census Divison",
+        renderer: sceneRenderer,
+        popupTemplate: {
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            fieldInfos: [{
+                fieldName: "Cases",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }, {
+                fieldName: "POP2009",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }]
+        }
+    });
+    
+    var countyLayer_neweng = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'Connecticut' OR STATE_NAME = 'Maine' OR STATE_NAME = 'Massachusetts' OR STATE_NAME = 'New Hampshire' OR STATE_NAME = 'Rhode Island' OR STATE_NAME = 'Vermont'",
+        title: "New England Census Divison",
+        renderer: sceneRenderer,
+        popupTemplate: {
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            fieldInfos: [{
+                fieldName: "Cases",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }, {
+                fieldName: "POP2009",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }]
+        }
+    });
+    
+    var countyLayer_midatl = new FeatureLayer({
+        url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
+        definitionExpression: "Cases > 0 AND STATE_NAME = 'New Jersey' OR STATE_NAME = 'New York' OR STATE_NAME = 'Pennsylvania'",
+        title: "Mid-Atlantic Census Divison",
+        renderer: sceneRenderer,
+        popupTemplate: {
+            title: "{COUNTY_NAM}",
+            content: "{Chlam_Perc}% of the population was diagnosed with chlamydia<br>{Cases} cases reported in {NAME} County",
+            fieldInfos: [{
+                fieldName: "Cases",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }, {
+                fieldName: "POP2009",
+                format: {
+                    digitSeparator: true,
+                    places: 0
+                }
+            }]
+        }
+    });
     
     //view.whenLayerView(stateLayer).then(setupHoverTooltip);
     //view.whenLayerView(countyLayer || countyLayer_esouth).then(setupHoverTooltip);
@@ -338,31 +508,7 @@ require([
             }
         };
     }*/
-    
-    /*var layerToggle = document.getElementById("layerDiv").addEventListener("click",
-        function () {
-        
-        var layerDisp = document.getElementsByClassName("layerList");
-        alert(layerDisp.value);
-            if (layerToggle.value === "southAtl") {
-                countyLayer.visible = true;
-                countyLayer_esouth.visible = false;
-                alert("button clicked");
-        } if (layerToggle.value === "eastSouth") {
-                countyLayer.visible = false;
-                countyLayer_esouth.visible = true;
-                //alert("radio button clicked!");
-            }
-        }
-        );*/
-    
-    /*southAtl.addEventListener("click", function(){
-        if (southAtl === "southAtl") {
-            countyLayer.visible = true;
-            countyLayer_esouth.visible = false;
-        }
-    })*/
-    
+
     var legend = new Legend({
             view: view
         });
