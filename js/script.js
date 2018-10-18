@@ -132,7 +132,7 @@ require([
             var censusLayer = e.target.value;
             if (censusLayer === "southAtl") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Delaware' OR STATE_NAME = 'District of Columbia' OR STATE_NAME = 'Florida' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Maryland' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'Virginia' OR STATE_NAME = 'West Virginia'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Delaware' OR STATE_NAME = 'District of Columbia' OR STATE_NAME = 'Florida' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Maryland' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'Virginia' OR STATE_NAME = 'West Virginia'");
                 view.goTo({
                     position: [-70.0182656, 21.697644, 1468982],
                     heading: 314.49,
@@ -140,7 +140,7 @@ require([
                 });
             } if (censusLayer === "eastSouth") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Alabama' OR STATE_NAME = 'Kentucky' OR STATE_NAME = 'Mississippi' OR STATE_NAME = 'Tennessee'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Alabama' OR STATE_NAME = 'Kentucky' OR STATE_NAME = 'Mississippi' OR STATE_NAME = 'Tennessee'");
                 view.goTo({
                     position: [-85.000595, 23.971260, 1027984],
                     heading: 346.09,
@@ -148,7 +148,7 @@ require([
                 });
             } if (censusLayer === "westSouth") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Arkansas' OR STATE_NAME = 'Louisiana' OR STATE_NAME = 'Oklahoma' OR STATE_NAME = 'Texas'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Arkansas' OR STATE_NAME = 'Louisiana' OR STATE_NAME = 'Oklahoma' OR STATE_NAME = 'Texas'");
                 view.goTo({
                     position: [-91.281626, 18.731395, 1416475],
                     heading: 344.11,
@@ -156,7 +156,7 @@ require([
                 });
             } if (censusLayer === "mountain") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Arizona' OR STATE_NAME = 'Colorado' OR STATE_NAME = 'Idaho' OR STATE_NAME = 'Montana' OR STATE_NAME = 'Nevada' OR STATE_NAME = 'New Mexico' OR STATE_NAME = 'Utah' OR STATE_NAME = 'Wyoming'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Arizona' OR STATE_NAME = 'Colorado' OR STATE_NAME = 'Idaho' OR STATE_NAME = 'Montana' OR STATE_NAME = 'Nevada' OR STATE_NAME = 'New Mexico' OR STATE_NAME = 'Utah' OR STATE_NAME = 'Wyoming'");
                 view.goTo({
                     position: [-122.252553, 25.69622, 1686595],
                     heading: 34.75,
@@ -164,7 +164,7 @@ require([
                 });
             } if (censusLayer === "pacific") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Alaska' OR STATE_NAME = 'California' OR STATE_NAME = 'Hawaii' OR STATE_NAME = 'Oregon' OR STATE_NAME = 'Washington'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Alaska' OR STATE_NAME = 'California' OR STATE_NAME = 'Hawaii' OR STATE_NAME = 'Oregon' OR STATE_NAME = 'Washington'");
                 view.goTo({
                     position: [-128.891211, 28.1493175, 1853437],
                     heading: 38.17,
@@ -172,7 +172,7 @@ require([
                 });
             } if (censusLayer === "eastNorth") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Illinois' OR STATE_NAME = 'Indiana' OR STATE_NAME = 'Michigan' OR STATE_NAME = 'Ohio' OR STATE_NAME = 'Wisconsin'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Illinois' OR STATE_NAME = 'Indiana' OR STATE_NAME = 'Michigan' OR STATE_NAME = 'Ohio' OR STATE_NAME = 'Wisconsin'");
                 view.goTo({
                     position: [-93.211535, 32.614248, 1373359],
                     heading: 31.33,
@@ -180,7 +180,7 @@ require([
                 });
             } if (censusLayer === "westNorth") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Iowa' OR STATE_NAME = 'Kansas' OR STATE_NAME = 'Minnesota' OR STATE_NAME = 'Missouri' OR STATE_NAME = 'Nebraska' OR STATE_NAME = 'North Dakota' OR STATE_NAME = 'South Dakota'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Iowa' OR STATE_NAME = 'Kansas' OR STATE_NAME = 'Minnesota' OR STATE_NAME = 'Missouri' OR STATE_NAME = 'Nebraska' OR STATE_NAME = 'North Dakota' OR STATE_NAME = 'South Dakota'");
                 view.goTo({
                     position: [-92.159829, 28.622827, 1517695],
                     heading: 348.15,
@@ -188,7 +188,7 @@ require([
                 });
             } if (censusLayer === "newEng") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'Connecticut' OR STATE_NAME = 'Maine' OR STATE_NAME = 'Massachusetts' OR STATE_NAME = 'New Hampshire' OR STATE_NAME = 'Rhode Island' OR STATE_NAME = 'Vermont'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'Connecticut' OR STATE_NAME = 'Maine' OR STATE_NAME = 'Massachusetts' OR STATE_NAME = 'New Hampshire' OR STATE_NAME = 'Rhode Island' OR STATE_NAME = 'Vermont'");
                 view.goTo({
                     position: [-68.420000, 35.013168, 780150],
                     heading: 346.08,
@@ -196,7 +196,7 @@ require([
                 });
             } if (censusLayer === "midAtl") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0 AND STATE_NAME = 'New Jersey' OR STATE_NAME = 'New York' OR STATE_NAME = 'Pennsylvania'");
+                countyLayer.definitionExpression = new String("Cases >= 0 AND STATE_NAME = 'New Jersey' OR STATE_NAME = 'New York' OR STATE_NAME = 'Pennsylvania'");
                 view.goTo({
                     position: [-70.801104, 34.410467, 830873],
                     heading: 329.58,
@@ -204,7 +204,7 @@ require([
                 });
             } if (censusLayer === "all") {
                 map.removeAll();
-                countyLayer.definitionExpression = new String("Cases > 0");
+                countyLayer.definitionExpression = new String("Cases >= 0");
                 view.goTo({
                     position: [-94.7388980, 22.6435973, 5487820],
                     heading: 0,
@@ -218,7 +218,7 @@ require([
     //Feature layer default region is mid atlantic 
     var countyLayer = new FeatureLayer({
         url: "https://services.arcgis.com/YseQBnl2jq0lrUV5/arcgis/rest/services/CDC_US_STD_2016_Map/FeatureServer/0",
-        definitionExpression: "Cases > 0 AND STATE_NAME = 'Delaware' OR STATE_NAME = 'District of Columbia' OR STATE_NAME = 'Florida' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Maryland' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'Virginia' OR STATE_NAME = 'West Virginia'",
+        definitionExpression: "Cases >= 0 AND STATE_NAME = 'Delaware' OR STATE_NAME = 'District of Columbia' OR STATE_NAME = 'Florida' OR STATE_NAME = 'Georgia' OR STATE_NAME = 'Maryland' OR STATE_NAME = 'North Carolina' OR STATE_NAME = 'South Carolina' OR STATE_NAME = 'Virginia' OR STATE_NAME = 'West Virginia'",
         title: "Reported Cases of Chlamydia 2016",
         renderer: sceneRenderer,
         popupTemplate: {
