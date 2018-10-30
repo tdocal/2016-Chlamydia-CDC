@@ -77,16 +77,16 @@ require([
             },
             visualVariables: [{
                 type: "color",
-                field: "RATE_PER_1",
+                field: "RATE_PERC",
                 legendOptions: {
                     title: "% of population with chlamydia"
                 },
                 stops: [{
-                    value: 100,
+                    value: 0.1,
                     color: "#f1eef6",
                     label: "<0.1%"
                 }, {
-                    value: 3000,
+                    value: 3,
                     color: "#045a8d",
                     label: ">3%"
                 }]
@@ -98,7 +98,7 @@ require([
                 },
                 stops: [{
                     value: 20,
-                    size: 2000,
+                    size: 3000,
                     label: "20"
                 }, {
                     value: 20000,
@@ -223,7 +223,7 @@ require([
         renderer: sceneRenderer,
         popupTemplate: {
             title: "{COUNTY_NAME}",
-            content: "{RATE_PERC}% of the population was diagnosed with chlamydia<br>{CASES} cases reported in {NAME} county in 2016",
+            content: "{RATE_PERC}% of the population was diagnosed with {INDICATOR_}<br>{CASES} cases reported in {NAME} county in 2016",
             fieldInfos: [{
                 fieldName: "CASES",
                 format: {
