@@ -86,9 +86,9 @@ require([
                     color: "#f1eef6",
                     label: "<0.1%"
                 }, {
-                    value: 3,
+                    value: 2.8,
                     color: "#045a8d",
-                    label: ">3%"
+                    label: ">2.8%"
                 }]
             }, {
                 type: "size",
@@ -213,7 +213,7 @@ require([
             }
             map.add(countyLayer);
         });
-    }  
+    }
     
     //Feature layer default region is mid atlantic 
     var countyLayer = new FeatureLayer({
@@ -223,7 +223,7 @@ require([
         renderer: sceneRenderer,
         popupTemplate: {
             title: "{COUNTY_NAME}",
-            content: "{RATE_PERC}% of the population was diagnosed with {INDICATOR_}<br>{CASES} cases reported in {NAME} county in 2016",
+            content: "{RATE_PERC}% of the population was diagnosed with {INDICATOR_}<br>{CASES} cases reported in {COUNTY_NAME} in 2016",
             fieldInfos: [{
                 fieldName: "CASES",
                 format: {
